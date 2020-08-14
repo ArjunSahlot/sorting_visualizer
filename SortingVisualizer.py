@@ -253,7 +253,7 @@ def merge_sort(window, pillars, left, right):
 
 def main(window):
     global pillarwidth, pillargap, vis_col, merge_col, insertion_col, selection_col, bubble_col, quick_col, algorithm, generate_col, circle_x
-    n = 500
+    n = 120
     pillars = generate_pillars(n)
     # get pillar width and gap
     pillarwidth, pillargap = pillar_width_gap(len(pillars))
