@@ -270,7 +270,6 @@ def main(window):
                 run = False
             if vis_button.collidepoint(pygame.mouse.get_pos()):
                 vis_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if algorithm == "Selection":
                         selection_sort(window, pillars)
@@ -292,7 +291,6 @@ def main(window):
 
             if merge_button.collidepoint(pygame.mouse.get_pos()):
                 merge_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     algorithm = "Merge"
             else:
@@ -300,7 +298,6 @@ def main(window):
 
             if quick_button.collidepoint(pygame.mouse.get_pos()):
                 quick_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     algorithm = "Quick"
             else:
@@ -308,7 +305,6 @@ def main(window):
 
             if selection_button.collidepoint(pygame.mouse.get_pos()):
                 selection_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     algorithm = "Selection"
             else:
@@ -316,7 +312,6 @@ def main(window):
 
             if insertion_button.collidepoint(pygame.mouse.get_pos()):
                 insertion_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     algorithm = "Insertion"
             else:
@@ -324,7 +319,6 @@ def main(window):
 
             if bubble_button.collidepoint(pygame.mouse.get_pos()):
                 bubble_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     algorithm = "Bubble"
             else:
@@ -332,7 +326,6 @@ def main(window):
 
             if generate_button.collidepoint(pygame.mouse.get_pos()):
                 generate_col = RED
-                # todo: make the cursor a pointer -- pygame.mouse.set_cursor
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pillars = generate_pillars(round((circle_x - 250) * 50 / 23))
                     pillarwidth, pillargap = pillar_width_gap(len(pillars))
