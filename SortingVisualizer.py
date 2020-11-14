@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 1200, 800
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 font = pygame.font.SysFont('comicsans', 30)
 visfont = pygame.font.SysFont('comicsans', 40)
-pygame.display.set_caption("Sorting Visualizer, By: Arjun Sahlot")
+pygame.display.set_caption("Sorting Visualizer")
 pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
 TOPBARHEIGHT = 80
 
