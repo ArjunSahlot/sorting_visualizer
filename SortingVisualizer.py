@@ -21,13 +21,16 @@ import os
 import random
 
 import pygame
+import vidmaker
+
+v = vidmaker.Video("/home/arjun/Downloads/sorting.mp4")
 
 # Constants
 pygame.init()
 WIDTH, HEIGHT = 1200, 800
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-font = pygame.font.SysFont('comicsans', 30)
-visfont = pygame.font.SysFont('comicsans', 40)
+font = pygame.font.SysFont("comicsans", 30)
+visfont = pygame.font.SysFont("comicsans", 40)
 pygame.display.set_caption("Sorting Visualizer")
 pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
 TOPBARHEIGHT = 80
@@ -70,76 +73,194 @@ def display_window(window, pillars):
     window.fill(GREY, rect=(0, 0, WIDTH, TOPBARHEIGHT))
     # draw text
     vis_text = visfont.render("Visualize!", 1, vis_col)
-    window.blit(vis_text,
-                (WIDTH // 2 - vis_text.get_width() // 2, TOPBARHEIGHT // 2 - vis_text.get_height() // 2))
+    window.blit(
+        vis_text,
+        (
+            WIDTH // 2 - vis_text.get_width() // 2,
+            TOPBARHEIGHT // 2 - vis_text.get_height() // 2,
+        ),
+    )
 
     merge_text = font.render("Merge", 1, merge_col)
-    window.blit(merge_text,
-                (WIDTH // 2 + vis_text.get_width() // 2 + 20, TOPBARHEIGHT // 2 - merge_text.get_height() // 2))
+    window.blit(
+        merge_text,
+        (
+            WIDTH // 2 + vis_text.get_width() // 2 + 20,
+            TOPBARHEIGHT // 2 - merge_text.get_height() // 2,
+        ),
+    )
 
     insertion_text = font.render("Insertion", 1, insertion_col)
-    window.blit(insertion_text, (WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + 40,
-                                 TOPBARHEIGHT // 2 - insertion_text.get_height() // 2))
+    window.blit(
+        insertion_text,
+        (
+            WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + 40,
+            TOPBARHEIGHT // 2 - insertion_text.get_height() // 2,
+        ),
+    )
 
     selection_text = font.render("Selection", 1, selection_col)
-    window.blit(selection_text, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + 60,
-        TOPBARHEIGHT // 2 - selection_text.get_height() // 2))
+    window.blit(
+        selection_text,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + 60,
+            TOPBARHEIGHT // 2 - selection_text.get_height() // 2,
+        ),
+    )
 
     quick_text = font.render("Quick", 1, quick_col)
-    window.blit(quick_text, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + selection_text.get_width() + 80,
-        TOPBARHEIGHT // 2 - quick_text.get_height() // 2))
+    window.blit(
+        quick_text,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + selection_text.get_width()
+            + 80,
+            TOPBARHEIGHT // 2 - quick_text.get_height() // 2,
+        ),
+    )
 
     bubble_text = font.render("Bubble", 1, bubble_col)
-    window.blit(bubble_text, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + selection_text.get_width() + quick_text.get_width() + 100,
-        TOPBARHEIGHT // 2 - bubble_text.get_height() // 2))
+    window.blit(
+        bubble_text,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + selection_text.get_width()
+            + quick_text.get_width()
+            + 100,
+            TOPBARHEIGHT // 2 - bubble_text.get_height() // 2,
+        ),
+    )
 
     generate_text = font.render("Generate New Set", 1, generate_col)
     window.blit(generate_text, (40, TOPBARHEIGHT // 2 - merge_text.get_height() // 2))
 
     # draw button around text
-    vis_button = pygame.draw.rect(window, vis_col, (
-        WIDTH // 2 - vis_text.get_width() // 2 - 5, TOPBARHEIGHT // 2 - vis_text.get_height() // 2 - 3,
-        vis_text.get_width() + 10, vis_text.get_height() + 6), 3)
+    vis_button = pygame.draw.rect(
+        window,
+        vis_col,
+        (
+            WIDTH // 2 - vis_text.get_width() // 2 - 5,
+            TOPBARHEIGHT // 2 - vis_text.get_height() // 2 - 3,
+            vis_text.get_width() + 10,
+            vis_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    merge_button = pygame.draw.rect(window, merge_col, (
-        WIDTH // 2 + vis_text.get_width() // 2 + 15, TOPBARHEIGHT // 2 - merge_text.get_height() // 2 - 3,
-        merge_text.get_width() + 10, merge_text.get_height() + 6), 3)
+    merge_button = pygame.draw.rect(
+        window,
+        merge_col,
+        (
+            WIDTH // 2 + vis_text.get_width() // 2 + 15,
+            TOPBARHEIGHT // 2 - merge_text.get_height() // 2 - 3,
+            merge_text.get_width() + 10,
+            merge_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    insertion_button = pygame.draw.rect(window, insertion_col, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + 35,
-        TOPBARHEIGHT // 2 - insertion_text.get_height() // 2 - 3,
-        insertion_text.get_width() + 10, insertion_text.get_height() + 6), 3)
+    insertion_button = pygame.draw.rect(
+        window,
+        insertion_col,
+        (
+            WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + 35,
+            TOPBARHEIGHT // 2 - insertion_text.get_height() // 2 - 3,
+            insertion_text.get_width() + 10,
+            insertion_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    selection_button = pygame.draw.rect(window, selection_col, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + 55,
-        TOPBARHEIGHT // 2 - selection_text.get_height() // 2 - 3,
-        selection_text.get_width() + 10, selection_text.get_height() + 6), 3)
+    selection_button = pygame.draw.rect(
+        window,
+        selection_col,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + 55,
+            TOPBARHEIGHT // 2 - selection_text.get_height() // 2 - 3,
+            selection_text.get_width() + 10,
+            selection_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    quick_button = pygame.draw.rect(window, quick_col, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + selection_text.get_width() + 75,
-        TOPBARHEIGHT // 2 - quick_text.get_height() // 2 - 3,
-        quick_text.get_width() + 10, quick_text.get_height() + 6), 3)
+    quick_button = pygame.draw.rect(
+        window,
+        quick_col,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + selection_text.get_width()
+            + 75,
+            TOPBARHEIGHT // 2 - quick_text.get_height() // 2 - 3,
+            quick_text.get_width() + 10,
+            quick_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    bubble_button = pygame.draw.rect(window, bubble_col, (
-        WIDTH // 2 + vis_text.get_width() // 2 + merge_text.get_width() + insertion_text.get_width() + selection_text.get_width() + quick_text.get_width() + 95,
-        TOPBARHEIGHT // 2 - bubble_text.get_height() // 2 - 3,
-        bubble_text.get_width() + 10, bubble_text.get_height() + 6), 3)
+    bubble_button = pygame.draw.rect(
+        window,
+        bubble_col,
+        (
+            WIDTH // 2
+            + vis_text.get_width() // 2
+            + merge_text.get_width()
+            + insertion_text.get_width()
+            + selection_text.get_width()
+            + quick_text.get_width()
+            + 95,
+            TOPBARHEIGHT // 2 - bubble_text.get_height() // 2 - 3,
+            bubble_text.get_width() + 10,
+            bubble_text.get_height() + 6,
+        ),
+        3,
+    )
 
-    generate_button = pygame.draw.rect(window, generate_col, (
-        40 - 5, TOPBARHEIGHT // 2 - generate_text.get_height() // 2 - 3, generate_text.get_width() + 10,
-        generate_text.get_height() + 6), 3)
+    generate_button = pygame.draw.rect(
+        window,
+        generate_col,
+        (
+            40 - 5,
+            TOPBARHEIGHT // 2 - generate_text.get_height() // 2 - 3,
+            generate_text.get_width() + 10,
+            generate_text.get_height() + 6,
+        ),
+        3,
+    )
 
     # draw slider
-    pygame.draw.rect(window, WHITE, (generate_text.get_width() + 75, TOPBARHEIGHT // 2 - 5, 230, 10))
+    pygame.draw.rect(
+        window, WHITE, (generate_text.get_width() + 75, TOPBARHEIGHT // 2 - 5, 230, 10)
+    )
     pygame.draw.circle(window, RED, (circle_x, TOPBARHEIGHT // 2), 8)
 
     # draw pillars
     for i in range(len(pillars)):
-        window.fill(pillars[i][1],
-                    rect=(10 + i * (pillarwidth + pillargap), pillars[i][0], pillarwidth, HEIGHT - pillars[i][0]))
+        window.fill(
+            pillars[i][1],
+            rect=(
+                10 + i * (pillarwidth + pillargap),
+                pillars[i][0],
+                pillarwidth,
+                HEIGHT - pillars[i][0],
+            ),
+        )
     pygame.display.update()
 
 
@@ -276,11 +397,18 @@ def main(window):
     pillars = generate_pillars(n)
     # get pillar width and gap
     pillarwidth, pillargap = pillar_width_gap(len(pillars))
-    circle_x = n*23//50 + 250
+    circle_x = n * 23 // 50 + 250
     run = True
     algorithm = None
-    vis_col, merge_col, insertion_col, selection_col, bubble_col, quick_col, generate_col = (
-        BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE)
+    (
+        vis_col,
+        merge_col,
+        insertion_col,
+        selection_col,
+        bubble_col,
+        quick_col,
+        generate_col,
+    ) = (BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE)
 
     while run:
         display_window(window, pillars)
@@ -352,14 +480,19 @@ def main(window):
                 generate_col = BLUE
 
             mouseX, mouseY = pygame.mouse.get_pos()
-            if 250 < mouseX < 480 and TOPBARHEIGHT // 2 - 8 < mouseY < TOPBARHEIGHT // 2 + 8:
+            if (
+                250 < mouseX < 480
+                and TOPBARHEIGHT // 2 - 8 < mouseY < TOPBARHEIGHT // 2 + 8
+            ):
                 if True in pygame.mouse.get_pressed():
                     circle_x = mouseX
 
         pygame.display.update()
+        v.update(pygame.surfarray.pixels3d(window).swapaxes(0, 1))
 
     pygame.quit()
 
 
 # Run
 main(WINDOW)
+v.export(True)
